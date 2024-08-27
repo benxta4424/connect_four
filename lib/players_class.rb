@@ -1,8 +1,8 @@
 class Players
-    attr_accessor :name,:choice
+  attr_accessor :name, :choice
 
-    def initialize(nam,choic)
-        @name=nam
-        @choice=choic
-    end
+  def initialize(nam, choic)
+    @name = nam
+    @choice = choic
+  end
 end
