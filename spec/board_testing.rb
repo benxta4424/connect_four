@@ -70,7 +70,7 @@ describe Board do
 
     let(:passing_grid){[[0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
+                        [1,0,0,0,0,0,0],
                         [1,0,0,0,0,0,0],
                         [1,0,0,0,0,0,0],
                         [1,0,0,0,0,0,0]]}
@@ -89,7 +89,11 @@ describe Board do
       end
 
       it 'should return true for 4 consecutive values' do
+          allow(mother_class).to receive(:board_class).and_return(passing_grid)
 
+          solution=mother_class.check_columns(1,0)
+
+          expect(solution).to eq(true)
       end
 
     end
