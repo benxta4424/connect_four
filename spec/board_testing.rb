@@ -58,7 +58,6 @@ describe Board do
     end
   end
 
-<<<<<<< HEAD
   describe "#check_columns" do
 
     subject(:mother_class){described_class.new}
@@ -129,7 +128,5 @@ describe Board do
   
   end
 
-=======
->>>>>>> 4046be86582f7b73def5b7e55909dcfb22b65f0a
   
 end
