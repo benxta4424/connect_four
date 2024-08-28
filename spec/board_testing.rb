@@ -85,7 +85,7 @@ describe Board do
 
     context 'testing for consecutive values wins and fails' do
 
-      it 'should return false because we have only 3 consecutive values' do
+      it 'falsey for only 3 consecutive values' do
 
         allow(mother_class).to receive(:board_class).and_return(failing_grid)
 
@@ -95,7 +95,7 @@ describe Board do
 
       end
 
-      it 'should return true for 4 consecutive values' do
+      it 'truthy for 4 consecutive values' do
           allow(mother_class).to receive(:board_class).and_return(passing_grid)
 
           solution=mother_class.check_columns(1,0)
