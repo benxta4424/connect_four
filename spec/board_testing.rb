@@ -74,6 +74,13 @@ describe Board do
                         [1,0,0,0,0,0,0],
                         [1,0,0,0,0,0,0],
                         [1,0,0,0,0,0,0]]}
+
+      let(:empty_grid){[[0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0]]}
                         
 
     context 'testing for consecutive values wins and fails' do
@@ -95,6 +102,31 @@ describe Board do
 
           expect(solution).to eq(true)
       end
+
+    end
+
+    context 'testing for an empty column' do
+
+      context 'returns false for every column of an empty grid' do
+
+        it 'returns false for column 5' do
+          allow(mother_class).to receive(:board_class).and_return(empty_grid)
+
+          solution=mother_class.check_columns(1,4)
+
+          expect(solution).to eq(false)
+        end
+
+        it 'returns false for column 1' do
+          allow(mother_class).to receive(:board_class).and_return(empty_grid)
+
+          solution=mother_class.check_columns(1,0)
+
+          expect(solution).to eq(false)
+        end
+
+      end
+
 
     end
   
