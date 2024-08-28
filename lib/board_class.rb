@@ -43,19 +43,23 @@ class Board
             end
 
             return true
-
-        elsif !is_legal?(row_number)
-            puts 'Column is full'
-            return false
+            
         end
+
+        false
+        
         
     end
 
-    def check_rows(player_choice,column_number)
+    def board_class
+        @board
+    end
+
+    def check_columns(player_choice,column_number)
 
         matched_values=0
 
-        @board.each do |column|
+        board_class.each do |column|
             if column[column_number]==player_choice
                 matched_values+=1
 
