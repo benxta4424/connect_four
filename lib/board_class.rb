@@ -77,4 +77,28 @@ class Board
         
     end
 
+    def check_rows(player_choice)
+
+        row_counter=0
+
+        @board.size-1.times do
+            matching_values=0
+
+            @board.each do |items|
+                if items[row_counter]==player_choice
+                    matching_values+=1
+                end
+
+                if matching_values==4
+                    return true
+                    break
+                end
+            endz
+
+            row_counter+=1
+        end
+
+        false
+    end
+
 end
