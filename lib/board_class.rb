@@ -51,28 +51,26 @@ class Board
         
     end
 
-    def check_rows(player_choice)
+    def check_rows(player_choice,column_number)
 
-        row_counter=0
+        matched_values=0
 
-        @board.size-1.times do
-            matching_values=0
+        @board.each do |column|
+            if column[column_number]==player_choice
+                matched_values+=1
 
-            @board.each do |items|
-                if items[row_counter]==player_choice
-                    matching_values+=1
-                end
-
-                if matching_values==4
+                if matched_values==4
                     return true
-                    break
                 end
-            endz
-
-            row_counter+=1
+            elsif column[column_number].nil? 
+                return false
+            else
+                matched_values=0
+            end
         end
 
         false
+        
     end
 
 end
