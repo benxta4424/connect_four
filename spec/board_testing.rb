@@ -58,5 +58,43 @@ describe Board do
     end
   end
 
+  describe "#check_columns" do
+
+    subject(:mother_class){described_class.new}
+    let(:failing_grid){[[0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [1,0,0,0,0,0,0],
+                        [1,0,0,0,0,0,0],
+                        [1,0,0,0,0,0,0]]}
+
+    let(:passing_grid){[[0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [1,0,0,0,0,0,0],
+                        [1,0,0,0,0,0,0],
+                        [1,0,0,0,0,0,0]]}
+                        
+
+    context 'testing for consecutive values wins and fails' do
+
+      it 'should return false because we have only 3 consecutive values' do
+
+        allow(mother_class).to receive(:board_class).and_return(failing_grid)
+
+        solution=mother_class.check_columns(1,0)
+
+        expect(solution).to eq(false)
+
+      end
+
+      it 'should return true for 4 consecutive values' do
+
+      end
+
+    end
+  
+  end
+
   
 end
