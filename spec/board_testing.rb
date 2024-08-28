@@ -74,11 +74,18 @@ describe Board do
                         [1,0,0,0,0,0,0],
                         [1,0,0,0,0,0,0],
                         [1,0,0,0,0,0,0]]}
+
+      let(:empty_grid){[[0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0]]}
                         
 
     context 'testing for consecutive values wins and fails' do
 
-      it 'should return false because we have only 3 consecutive values' do
+      it 'falsey for only 3 consecutive values' do
 
         allow(mother_class).to receive(:board_class).and_return(failing_grid)
 
@@ -88,13 +95,34 @@ describe Board do
 
       end
 
-      it 'should return true for 4 consecutive values' do
+      it 'truthy for 4 consecutive values' do
           allow(mother_class).to receive(:board_class).and_return(passing_grid)
 
           solution=mother_class.check_columns(1,0)
 
           expect(solution).to eq(true)
       end
+
+    end
+
+    context 'an empty column should return false because there is nothing to check' do
+
+      it 'returns a falsy value for column 4' do
+        allow(mother_class).to receive(:board_class).and_return(empty_grid)
+
+        solution=mother_class.check_columns(1,3)
+
+        expect(solution).to eq(false)
+      end
+
+      it 'returns falsy for column 6' do
+        allow(mother_class).to receive(:board_class).and_return(empty_grid)
+
+        solution=mother_class.check_columns(1,6)
+
+        expect(solution).to eq(false)
+      end
+
 
     end
   
