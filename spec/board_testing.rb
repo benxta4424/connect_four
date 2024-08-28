@@ -58,12 +58,5 @@ describe Board do
     end
   end
 
-  describe "#add_on_top" do
-    context "adds new color on a row" do
-      subject(:new_color) { described_class.new }
-
-      it "adds a new color on an empty row" do
-      end
-    end
-  end
+  
 end
