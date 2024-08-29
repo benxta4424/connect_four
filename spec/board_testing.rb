@@ -193,6 +193,8 @@ describe Board do
 
     subject(:mother_class){described_class.new}
 
+    let(:player_choice){1}
+
     let(:winning_grid){[[0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0],
                         [0,0,0,1,0,0,0],
@@ -200,19 +202,58 @@ describe Board do
                         [0,1,0,0,0,0,0],
                         [1,0,0,0,0,0,0]]}
 
-     let(:losing_grid){[[0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,1,0,0,0,0],
-                        [0,1,0,0,0,0,0],
-                        [1,0,0,0,0,0,0]]}
+    let(:winning_grid_six_values){[[0,0,0,0,0,1,0],
+                                   [0,0,0,0,1,0,0],
+                                   [0,0,0,1,0,0,0],
+                                   [0,0,1,0,0,0,0],
+                                   [0,1,0,0,0,0,0],
+                                   [1,0,0,0,0,0,0]]}
 
-      let(:empty_grid){[[0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0]]}
+    let(:losing_grid){[[0,0,0,0,0,0,0],
+                       [0,0,0,0,0,0,0],
+                       [0,0,0,0,0,0,0],
+                       [0,0,1,0,0,0,0],
+                       [0,1,0,0,0,0,0],
+                       [1,0,0,0,0,0,0]]}
+
+    let(:empty_diagonal){[[1,1,1,1,1,0,1],
+                          [1,1,1,1,0,1,1],
+                          [1,1,1,0,1,1,1],
+                          [1,1,0,1,1,1,1],
+                          [1,0,1,1,1,1,1],
+                          [0,1,1,1,1,1,1]]}
+
+      context '4 values in a row in a diagonal' do
+
+        it 'returns with a true value for 4 values in a row' do         
+          allow(mother_class).to receive(:board_class).and_return(winning_grid)
+          solution=mother_class.check_right_diagonal(player_choice,5,0)
+          expect(solution).to eq(true)
+        end
+
+        it 'returns true for more than 4 values in a row' do
+          allow(mother_class).to receive(:board_class).and_return(winning_grid_six_values)
+          solution=mother_class.check_right_diagonal(player_choice,5,0)
+          expect(solution).to eq(true)
+        end
+
+      end
+
+      context  'not enough values on the diagonal or the diagonal is empty' do
+
+        it 'returns false for a diagonal where only 3 values connect to each-other' do
+          allow(mother_class).to receive(:board_class).and_return(losing_grid)
+          solution=mother_class.check_right_diagonal(player_choice,5,0)
+          expect(solution).to eq(false)
+        end
+
+        it 'it returns nil for an empty diagonal' do
+          expect(mother_class).to receive(:board_class).and_return(empty_diagonal)
+          solution=mother_class.check_right_diagonal(player_choice,5,0)
+          expect(solution).to_be nil
+        end
+
+      end
 
   end
 
