@@ -5,15 +5,7 @@ describe Board do
     subject(:board_creation) { described_class.new }
 
     it "should display a 7 by 6 board" do
-      expected_output = <<~OUTPUT
-        ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪
-        ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪
-        ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪
-        ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪
-        ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪
-        ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪
-
-      OUTPUT
+      expected_output = [["⬤", "⬤", "⬤", "⬤", "⬤", "⬤", "⬤"], ["⬤", "⬤", "⬤", "⬤", "⬤", "⬤", "⬤"], ["⬤", "⬤", "⬤", "⬤", "⬤", "⬤", "⬤"], ["⬤", "⬤", "⬤", "⬤", "⬤", "⬤", "⬤"], ["⬤", "⬤", "⬤", "⬤", "⬤", "⬤", "⬤"], ["⬤", "⬤", "⬤", "⬤", "⬤", "⬤", "⬤"]]
 
       expect { board_creation.display_board }.to output { expected_output }.to_stdout
     end
@@ -216,12 +208,12 @@ describe Board do
                        [0,1,0,0,0,0,0],
                        [1,0,0,0,0,0,0]]}
 
-    let(:empty_diagonal){[[1,1,1,1,1,0,1],
-                          [1,1,1,1,0,1,1],
-                          [1,1,1,0,1,1,1],
-                          [1,1,0,1,1,1,1],
-                          [1,0,1,1,1,1,1],
-                          [0,1,1,1,1,1,1]]}
+    let(:empty_diagonal){[[1,1,1,1,1,nil,1],
+                          [1,1,1,1,nil,1,1],
+                          [1,1,1,nil,1,1,1],
+                          [1,1,nil,1,1,1,1],
+                          [1,nil,1,1,1,1,1],
+                          [nil,1,1,1,1,1,1]]}
 
       context '4 values in a row in a diagonal' do
 
@@ -250,12 +242,27 @@ describe Board do
         it 'it returns nil for an empty diagonal' do
           expect(mother_class).to receive(:board_class).and_return(empty_diagonal)
           solution=mother_class.check_right_diagonal(player_choice,5,0)
-          expect(solution).to_be nil
+          expect(solution).to eq(nil)
+        end
+
+      end
+
+      context 'out of bounds row/column' do
+
+        it 'returns nil for out of bounds row' do
+          solution=mother_class.check_right_diagonal(player_choice,7,0)
+          expect(solution).to eq(nil)
+        end
+
+        it 'returns nil for out of bounds column' do
+          solution=mother_class.check_right_diagonal(player_choice,4,77)
+          expect(solution).to eq(nil)
         end
 
       end
 
   end
+
 
   
 end

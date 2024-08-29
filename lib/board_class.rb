@@ -96,4 +96,34 @@ class Board
 
     end
 
+    def check_right_diagonal(player_choice,row_number,column_number)
+        matched_values=0
+
+        return nil unless column_number.between?(0,6) && row_number.between?(0,5) 
+
+
+        while board_class[row_number][column_number]
+
+            if board_class[row_number][column_number]==player_choice
+                matched_values+=1
+
+                if matched_values==4
+                    return true
+                end
+
+            else
+                matched_values=0
+            end
+
+            if row_number<0 || column_number>6
+                return false
+            end
+
+            row_number-=1
+            column_number+=1
+        end
+
+        nil
+    end
+
 end
