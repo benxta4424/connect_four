@@ -132,5 +132,62 @@ describe Board do
   
   end
 
+  describe "#check_rows" do
+
+    subject(:mother_class){described_class.new}
+    let(:winning_grid){[[1,1,1,1,1,1,1],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0]]}
+
+     let(:losing_grid){[[0,0,0,0,1,1,1],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0]]}
+
+      let(:empty_grid){[[0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0]]}
+
+    context 'testing the main functionality' do
+
+      it 'should return true for a full row of values' do
+        allow(mother_class).to receive(:board_class).and_return(winning_grid)
+
+        solution=mother_class.check_rows(1,0)
+
+        expect(solution).to eq(true)
+      end
+
+      it 'should return false for only 3 consecutive values' do
+        allow(mother_class).to receive(:board_class).and_return(losing_grid)
+
+        solution=mother_class.check_rows(1,0)
+
+        expect(solution).to eq(false)
+      end
+
+    end
+
+    context 'edge cases' do
+
+      it 'should return false for an empty row' do
+        allow(mother_class).to receive(:board_class).and_return(empty_grid)
+
+        solution=mother_class.check_rows(1,0)
+
+        expect(solution).to eq(false)
+      end
+    end
+
+  end
+
   
 end
