@@ -126,4 +126,25 @@ class Board
         nil
     end
 
+    def check_secondary_diagonal(player_choice, row_number, column_number)
+
+        return nil unless row_number.between?(0, 5) && column_number.between?(0, 6)
+    
+        matched_values = 0
+    
+        while row_number >= 0 && column_number >= 0
+            if board_class[row_number][column_number] == player_choice
+                matched_values += 1
+                return true if matched_values == 4
+            else
+                matched_values = 0
+            end
+    
+            row_number -= 1
+            column_number -= 1
+        end
+    
+        nil 
+    end
+
 end
