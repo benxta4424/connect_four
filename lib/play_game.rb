@@ -4,13 +4,16 @@ require './lib/different_colors'
 
 class PlayGame
 
+    include DifferentColors
+
     def initialize
         @board=Board.new
 
-        @player_name=nil
-        @player_choice=nil
+        @first_player=nil
+        @second_player=nil
+    end
 
-        @player_one=Players.new(@player_name,@player_choice)
-        @player_two=Players.new(@player_name,@player_choice)
+    def player_one
+        
     end
 end
