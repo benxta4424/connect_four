@@ -15,15 +15,21 @@ class PlayGame
   end
 
   def get_symbol
-    puts "What color circle would you want to pick for the game? You have six options:"
-    puts "-red"
-    puts "-green"
-    puts "-yellow"
-    puts "-blue"
-    puts "-magenta"
-    puts "-cyan"
+    colors = [
+        "\e[31mred\e[0m",         # Red 
+        "\e[42mgreen\e[0m",       # Green 
+        "\e[43myellow\e[0m",      # Yellow 
+        "\e[44mblue\e[0m",        # Blue 
+        "\e[45mmagenta\e[0m",     # Magenta 
+        "\e[46mcyan\e[0m"         # Cyan 
+      ]    
+    
+    puts "Please pick a color out of these six options:"
+    puts colors.join("  ")
 
+    print "Pick a color:"
     choice = gets.chomp
+    puts
 
     if choice == "red"
       red
@@ -41,6 +47,7 @@ class PlayGame
   end
 
   def get_name
+    print "Please pick a name:"
     gets.chomp
   end
 
@@ -76,6 +83,8 @@ class PlayGame
 
       @board.display_board
 
+      return "#{current_player.name} has won!" if win?(current_player.choice)
+
       current_player = current_player == first_player ? second_player : first_player
 
       turns += 1
@@ -94,5 +103,4 @@ class PlayGame
     end
     false
   end
-  
 end

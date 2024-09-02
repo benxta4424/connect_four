@@ -1,14 +1,11 @@
 puts "\u26AA"
 
-require './lib/board_class'
+require "./lib/board_class"
+require "./lib/play_game"
 
-board=Board.new
+red_circle = "\033[31m⬤\033[0m"
+black_circle_yellow = "\033[33m⬤\033[0m"
 
-board.display_board
-board.umple
+play = PlayGame.new
 
-puts
-puts
-puts
-
-board.display_board
+puts play.play_game

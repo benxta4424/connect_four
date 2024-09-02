@@ -42,27 +42,26 @@ describe PlayGame do
         allow(board).to receive(:check_right_diagonal).and_return(false)
         allow(board).to receive(:check_secondary_diagonal).and_return(false)
 
-
         expect(mother_class.win?(1)).to eq(true)
       end
 
       it "horizontal connection (rows)" do
         allow(board).to receive(:check_columns).and_return(false)
-        allow(board).to receive(:check_rows).with(1,anything).and_return(true)
+        allow(board).to receive(:check_rows).with(1, anything).and_return(true)
         allow(board).to receive(:check_right_diagonal).and_return(false)
         allow(board).to receive(:check_secondary_diagonal).and_return(false)
 
-        solution=mother_class.win?(1)
+        solution = mother_class.win?(1)
         expect(solution).to eq(true)
       end
 
       it "primary diagonal connection" do
         allow(board).to receive(:check_columns).and_return(false)
         allow(board).to receive(:check_rows).and_return(false)
-        allow(board).to receive(:check_right_diagonal).with(1,anything,anything).and_return(true)
+        allow(board).to receive(:check_right_diagonal).with(1, anything, anything).and_return(true)
         allow(board).to receive(:check_secondary_diagonal).and_return(false)
 
-        solution=mother_class.win?(1)
+        solution = mother_class.win?(1)
         expect(solution).to eq(true)
       end
 
@@ -70,9 +69,9 @@ describe PlayGame do
         allow(board).to receive(:check_columns).and_return(false)
         allow(board).to receive(:check_rows).and_return(false)
         allow(board).to receive(:check_right_diagonal).and_return(false)
-        allow(board).to receive(:check_secondary_diagonal).with(1,anything,anything).and_return(true)
+        allow(board).to receive(:check_secondary_diagonal).with(1, anything, anything).and_return(true)
 
-        solution=mother_class.win?(1)
+        solution = mother_class.win?(1)
         expect(solution).to eq(true)
       end
     end
@@ -84,7 +83,7 @@ describe PlayGame do
         allow(board).to receive(:check_right_diagonal).and_return(false)
         allow(board).to receive(:check_secondary_diagonal).and_return(false)
 
-        solution=mother_class.win?(1)
+        solution = mother_class.win?(1)
         expect(solution).to eq(false)
       end
     end
