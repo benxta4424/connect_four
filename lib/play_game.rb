@@ -9,14 +9,15 @@ class PlayGame
 
   def initialize
     @board = Board.new
-
     @turns = 0
-    @color_counter = []
+    @chosen_colors=[]
   end
 
   def get_symbol
+    puts
+    puts
     choice = 0
-
+    
     colors = [
       "1. \e[31mred\e[0m", # Red
       "2. \e[42mgreen\e[0m",       # Green
@@ -28,12 +29,15 @@ class PlayGame
 
     puts "Please pick a color out of these six options:"
     puts colors.join("  ")
+    puts
 
-    return if choice.between?(1, 6)
+    while !choice.between?(1,6)
 
     print "Pick a color:"
-    choice = gets.chomp
+    choice = gets.chomp.to_i
     puts
+
+    end
 
     if choice == 1
       red
@@ -51,6 +55,8 @@ class PlayGame
   end
 
   def get_name
+    puts
+    puts
     print "Please pick a name:"
     gets.chomp
   end
@@ -86,12 +92,14 @@ class PlayGame
       end
 
       puts
+      puts
+      puts
 
       @board.display_board
 
       if win?(current_player.choice)
         puts "#{current_player.name} has won!"
-        return true
+        return nil
       end
 
       current_player = current_player == first_player ? second_player : first_player
