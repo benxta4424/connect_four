@@ -88,4 +88,38 @@ describe PlayGame do
       end
     end
   end
+
+  describe "#play_game" do
+    let(:mother_class) { described_class.new }
+
+    context "the game scores in a tie" do
+      it "returns the correct phrase for a tie" do
+        allow(mother_class).to receive(:turns).and_return(43)
+        allow(mother_class).to receive(:player_one).and_return("ben", "red")
+        allow(mother_class).to receive(:player_one).and_return("dan", "green")
+
+        solution = mother_class.play_game
+        expect(solution).to eq("There is a tie!")
+      end
+    end
+
+    context "the game scores in a win for the first player" do
+      it "correctly returns the name of the winning player" do
+        allow(mother_class).to receive(:player_one).and_return("ben", "red")
+        allow(mother_class).to receive(:win?).with("red").and_return(true)
+
+        solution = mother_class.win?("red")
+        expect(solution).to eq(true)
+      end
+
+      it "correctly returns the name of the second player" do
+        allow(mother_class).to receive(:player_one).and_return("ben", "red")
+        allow(mother_class).to receive(:player_one).and_return("dede", "blue")
+        allow(mother_class).to receive(:win?).with("blue").and_return(true)
+
+        solution = mother_class.win?("blue")
+        expect(solution).to eq(true)
+      end
+    end
+  end
 end
