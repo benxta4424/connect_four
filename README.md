@@ -24,7 +24,10 @@ The code that i written for this game works on the following steps:
 
 Future ideas:
 -saving the game's progress inside a directory and the users can choose to play it or start a new game
+
 -adding new symbols and colors that the users can choose from
+
 -creating a web-page designed for this game where the users can pick everything with the mouse (even their names)
+
 -making everything customizable(the color of the board can be chosen,the shapes changed from circles to stars for example,adding a sound for winning in the web-page,creating a nice and cozy environment with nice backgrounds that the users can choose from and much more)
 
