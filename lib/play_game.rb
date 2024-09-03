@@ -31,13 +31,15 @@ class PlayGame
     puts colors.join("  ")
     puts
 
-    while !choice.between?(1,6)
+    while !choice.between?(1,6) || @chosen_colors.include?(choice)
 
     print "Pick a color:"
     choice = gets.chomp.to_i
     puts
 
     end
+
+    @chosen_colors<<choice
 
     if choice == 1
       red
