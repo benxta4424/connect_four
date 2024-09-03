@@ -11,6 +11,7 @@ class PlayGame
     @board = Board.new
     @turns = 0
     @chosen_colors=[]
+    @switch=true
   end
 
   def get_symbol
@@ -18,6 +19,7 @@ class PlayGame
     puts
     choice = 0
     
+    all_colors=["red","green","yellow","blue","magenta","cyan"]
     colors = [
       "1. \e[31mred\e[0m", # Red
       "2. \e[42mgreen\e[0m",       # Green
@@ -37,9 +39,27 @@ class PlayGame
     choice = gets.chomp.to_i
     puts
 
+    if @chosen_colors.include?(choice)
+      puts "#{all_colors[choice-1]} has already been chosen! Please pick something else!"
+      puts
+    end
+
     end
 
     @chosen_colors<<choice
+
+    if @switch
+      puts "#{all_colors[choice-1]}  has been chosen by the first player!"
+      @switch=false
+    elsif @switch==false
+      puts "#{all_colors[choice-1]}  has been chosen by the second player!"
+      puts
+      puts
+      puts "GOOD LUCK TO BOTH PLAYERS!!!"
+      puts
+      puts
+    end
+
 
     if choice == 1
       red
